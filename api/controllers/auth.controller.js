@@ -5,11 +5,19 @@ import  jwt from "jsonwebtoken"
 
 export const signup = async (req, res, next) => {
     const { username, email, password } = req.body
+
+    // Check if any of the required fields is empty
+    if (!username || !email || !password) {
+        return next(errorHandler(400, 'Please fill in all fields'));
+    }
+    
     const hashedPassword = bcryptjs.hashSync(password, 10)
     const newUser = new User({ username, email, password: hashedPassword })
+   
     try{
         await newUser.save()
         res.status(201).json('User created successfully!')
+        
     } catch(error) {
         next(error)
     }
@@ -18,6 +26,11 @@ export const signup = async (req, res, next) => {
 
 export const signin = async (req, res, next) => {
     const { email, password } = req.body
+
+    if (!email || !password) {
+        return next(errorHandler(400, 'Please fill in all fields'));
+    }
+
     try {
       const validUser = await User.findOne({ email })
       if (!validUser) return next(errorHandler(404, 'User not found!'))
