@@ -34,6 +34,7 @@ const SignUp = () => {
         setError(data.message)
         return
       }
+      
       setLoading(false)
       setError(null)
       navigate('/sign-in')
@@ -50,21 +51,21 @@ const SignUp = () => {
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
             <input 
                 type="text" 
-                placeholder='username' 
+                placeholder='Username' 
                 className='border p-3 rounded-lg outline-none'
                 onChange={handleChange}
                 id='username'
             />
             <input 
                 type="email" 
-                placeholder='email' 
+                placeholder='Email' 
                 className='border p-3 rounded-lg outline-none'
                 onChange={handleChange} 
                 id='email' 
             />
             <input 
                 type="password" 
-                placeholder='password' 
+                placeholder='Password' 
                 className='border p-3 rounded-lg outline-none'
                 onChange={handleChange} 
                 id='password' 
