@@ -1,10 +1,10 @@
-import {FaSearch} from 'react-icons/fa'
+import {FaLock, FaSearch} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
  const Header = () => {
   return (
     <header className='bg-slate-100'>
-        <div className='flex justify-between items-center max-w-6xl mx-auto p-4'>
+        <div className='flex justify-between items-center max-w-6xl mx-auto p-6'>
             <Link to='/'>
                 <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
                     <span className='text-slate-500'>Immobiliario</span>
