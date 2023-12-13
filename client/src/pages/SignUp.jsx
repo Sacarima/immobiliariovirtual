@@ -53,6 +53,7 @@ const SignUp = () => {
           
           <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
               <label className="flex items-center gap-2 border-b focus:border-b-slate-600 mt-3">
+                    
                     <FaUser className=" text-slate-600" />
                     <input
                         type="text"
