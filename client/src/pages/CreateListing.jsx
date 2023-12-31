@@ -332,7 +332,8 @@ import { useNavigate } from 'react-router-dom';
           </p>
           <div className='flex gap-4'>
             <input
-              className='p-3 border border-gray-300 rounded w-full'
+              className='p-3 border border-gray-300 rounded w-full file:mr-3 file:py-2 file:px-4 hover:file:opacity-75 text-slate-700 file:rounded-md file:border-0 file:cursor-pointer'
+              
               type='file'
               id='images'
               accept='image/*'
