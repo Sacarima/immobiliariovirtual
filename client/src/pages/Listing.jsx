@@ -1,59 +1,62 @@
-import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation } from 'swiper/modules';
-import SwiperCore from "swiper"
-import "swiper/css/bundle"
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import SwiperCore from 'swiper'
+import { useSelector } from 'react-redux'
+import { Navigation } from 'swiper/modules'
+import 'swiper/css/bundle'
 import {
-    FaBath,
-    FaBed,
-    FaChair,
-    FaMapMarkedAlt,
-    FaMapMarkerAlt,
-    FaParking,
-    FaShare,
-  } from 'react-icons/fa'
+  FaBath,
+  FaBed,
+  FaChair,
+  FaMapMarkedAlt,
+  FaMapMarkerAlt,
+  FaParking,
+  FaShare,
+} from 'react-icons/fa'
+import Contact from '../components/Contact';
 
 
 export default function Listing() {
-    SwiperCore.use([Navigation])
-    const [ listing, setListing ] = useState(null)
-    const [ loading, setLoading ] = useState(false)
-    const [ error, setError ] = useState(false)
-    const [copied, setCopied] = useState(false)
-    const params = useParams()
-    
-    useEffect(() => {
-        const fetchListing = async () => {
-          try {
-            setLoading(true);
-            const res = await fetch(`/api/listing/get/${params.listingId}`);
-            const data = await res.json();
-            if (data.success === false) {
-              setError(true);
-              setLoading(false);
-              return;
-            }
-            setListing(data);
-            setLoading(false);
-            setError(false);
-          } catch (error) {
-            setError(true);
-            setLoading(false);
-          }
-        };
-        fetchListing();
-      }, [params.listingId]);
-    
-  
-        return (
+  SwiperCore.use([Navigation])
+  const [listing, setListing] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
+  const [copied, setCopied] = useState(false)
+  const [contact, setContact] = useState(false)
+  const params = useParams()
+  const { currentUser } = useSelector((state) => state.user)
+
+  useEffect(() => {
+    const fetchListing = async () => {
+      try {
+        setLoading(true)
+        const res = await fetch(`/api/listing/get/${params.listingId}`)
+        const data = await res.json()
+        if (data.success === false) {
+          setError(true)
+          setLoading(false)
+          return
+        }
+        setListing(data)
+        setLoading(false)
+        setError(false)
+      } catch (error) {
+        setError(true)
+        setLoading(false)
+      }
+    };
+    fetchListing()
+  }, [params.listingId])
+
+  return (
     <main>
-        {/* REPLACE THE PARAGRAPH WITH A SPANNER */}
-        {loading && <p className="text-center my-7 text-2xl">Loading...</p>}
-        {error && (
+        {/* replace the p selector with a loading spinner */}
+      {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
+      {error && (
         <p className='text-center my-7 text-2xl'>Something went wrong!</p>
       )}
-        {listing && !loading && !error && (
+      {listing && !loading && !error && (
         <div>
           <Swiper navigation>
             {listing.imageUrls.map((url) => (
@@ -66,7 +69,7 @@ export default function Listing() {
                   }}
                 ></div>
               </SwiperSlide>
-                ))}
+            ))}
           </Swiper>
           <div className='fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer'>
             <FaShare
@@ -133,9 +136,18 @@ export default function Listing() {
                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
               </li>
             </ul>
+            {currentUser && listing.userRef !== currentUser._id && !contact && (
+              <button
+                onClick={() => setContact(true)}
+                className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
+              >
+                Contact landlord
+              </button>
+            )}
+            {contact && <Contact listing={listing} />}
           </div>
-          </div>
-          )}
+        </div>
+      )}
     </main>
   )
 }
