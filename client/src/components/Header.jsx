@@ -55,9 +55,9 @@ import { useSelector } from 'react-redux'
                 <Link to='/about'>
                     <li className='hidden sm:inline text-slate-700 hover:scale-110'>About</li>
                 </Link>
-                <Link to='/sign-in'>
+                {/* <Link to='/sign-in'>
                     <li className=' text-slate-700 hover:scale-110'>Sign in</li>
-                </Link>
+                </Link> */}
                 <Link to='/profile'>
             {currentUser ? (
               <img

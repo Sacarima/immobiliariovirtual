@@ -12,6 +12,8 @@ export default function Search() {
     offer: false,
     sort: 'created_at',
     order: 'desc',
+    minPrice: 0,
+    maxPrice: 100000000, // 100 million
   });
 
   const [loading, setLoading] = useState(false);
@@ -27,6 +29,9 @@ export default function Search() {
     const offerFromUrl = urlParams.get('offer');
     const sortFromUrl = urlParams.get('sort');
     const orderFromUrl = urlParams.get('order');
+    const minPriceFromUrl = urlParams.get('minPrice');
+    const maxPriceFromUrl = urlParams.get('maxPrice');
+  
 
     if (
       searchTermFromUrl ||
@@ -35,7 +40,9 @@ export default function Search() {
       furnishedFromUrl ||
       offerFromUrl ||
       sortFromUrl ||
-      orderFromUrl
+      orderFromUrl ||
+      minPriceFromUrl ||
+      maxPriceFromUrl
     ) {
       setSidebardata({
         searchTerm: searchTermFromUrl || '',
@@ -45,6 +52,8 @@ export default function Search() {
         offer: offerFromUrl === 'true' ? true : false,
         sort: sortFromUrl || 'created_at',
         order: orderFromUrl || 'desc',
+        minPrice: minPriceFromUrl || 0,
+        maxPrice: maxPriceFromUrl || 100000000, // 100 million
       });
     }
 
@@ -98,6 +107,14 @@ export default function Search() {
 
       setSidebardata({ ...sidebardata, sort, order });
     }
+
+    if (e.target.id === 'minPrice') {
+      setSidebardata({ ...sidebardata, minPrice: e.target.value });
+    }
+
+    if (e.target.id === 'maxPrice') {
+      setSidebardata({ ...sidebardata, maxPrice: e.target.value });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -110,6 +127,8 @@ export default function Search() {
     urlParams.set('offer', sidebardata.offer);
     urlParams.set('sort', sidebardata.sort);
     urlParams.set('order', sidebardata.order);
+    urlParams.set('minPrice', sidebardata.minPrice);
+    urlParams.set('maxPrice', sidebardata.maxPrice);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
@@ -223,6 +242,25 @@ export default function Search() {
               <option value='createdAt_desc'>Latest</option>
               <option value='createdAt_asc'>Oldest</option>
             </select>
+          </div>
+          <div className='flex items-center gap-2'>
+            <label className='font-semibold text'>Price range</label>
+            <input
+              type='number'
+              id='minPrice'
+              placeholder='Min'
+              className='border rounded-lg p-3 w-auto'
+              value={sidebardata.minPrice === '' ? '' : undefined}
+              onChange={handleChange}
+            />
+            <input
+              type='number'
+              id='maxPrice'
+              placeholder='Max'
+              className='border rounded-lg p-3 w-auto'
+              value={sidebardata.maxPrice === '' ? '' : undefined}
+              onChange={handleChange}
+            />
           </div>
           <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>
             Search

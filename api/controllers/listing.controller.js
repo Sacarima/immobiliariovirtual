@@ -87,6 +87,9 @@ export const deleteListing = async (req, res, next) => {
       }
   
       const searchTerm = req.query.searchTerm || ''
+
+      const minPrice = req.query.minPrice || 0
+      const maxPrice = req.query.maxPrice || 99999999999 // 99999999999 is just a random big number
   
       const sort = req.query.sort || 'createdAt'
   
@@ -98,6 +101,7 @@ export const deleteListing = async (req, res, next) => {
         furnished,
         parking,
         type,
+        regularPrice: { $gte: minPrice, $lte: maxPrice }, // filter by price
       })
         .sort({ [sort]: order })
         .limit(limit)

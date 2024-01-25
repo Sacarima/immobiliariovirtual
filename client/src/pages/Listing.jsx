@@ -3,8 +3,12 @@ import { useParams } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore from 'swiper'
 import { useSelector } from 'react-redux'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Pagination, FreeMode, Thumbs } from 'swiper/modules'
 import 'swiper/css/bundle'
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs'
 import {
   FaBath,
   FaBed,
@@ -19,6 +23,7 @@ import Contact from '../components/Contact';
 
 export default function Listing() {
   SwiperCore.use([Navigation])
+  const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [listing, setListing] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -58,7 +63,15 @@ export default function Listing() {
       )}
       {listing && !loading && !error && (
         <div>
-          <Swiper navigation>
+          <Swiper 
+            navigation
+            loop={true}
+            spaceBetween={10}
+            //navigation={true}
+            thumbs={{ swiper: thumbsSwiper }}
+            modules={[FreeMode, Navigation, Thumbs]}
+            className='w-[70%] mt-4 rounded-sm'
+            >
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
                 <div
@@ -66,6 +79,33 @@ export default function Listing() {
                   style={{
                     background: `url(${url}) center no-repeat`,
                     backgroundSize: 'cover',
+                  }}
+                ></div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            loop={true}
+            spaceBetween={10}
+            slidesPerView={4}
+            freeMode={true}
+            watchSlidesProgress={true}
+            modules={[FreeMode, Navigation, Thumbs]}
+            className=' w-[70%] cursor-pointer mt-2 '
+            
+          >
+            {listing.imageUrls.map((url) => (
+              <SwiperSlide 
+                key={url}
+              >
+                <div
+                  className='h-[100px]'
+                  style={{
+                    background: `url(${url}) center no-repeat`,
+                    backgroundSize: 'cover',
+                    borderRadius: '2px'
                   }}
                 ></div>
               </SwiperSlide>
@@ -110,17 +150,17 @@ export default function Listing() {
                 </p>
               )}
             </div>
-            <p className='text-slate-800'>
-              <span className='font-semibold text-black'>Description - </span>
-              {listing.description}
-            </p>
-            <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
-              <li className='flex items-center gap-1 whitespace-nowrap '>
-                <FaBed className='text-lg' />
-                {listing.bedrooms > 1
-                  ? `${listing.bedrooms} beds `
-                  : `${listing.bedrooms} bed `}
-              </li>
+            
+            <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6  border-y-2 py-4'>
+              <div>
+                <p className='text-gray-400 font-extralight uppercase mb-2'>Bedrooms</p>
+                <li className='flex items-center gap-1 whitespace-nowrap '>
+                  <FaBed className='text-lg' />
+                  {listing.bedrooms > 1
+                    ? `${listing.bedrooms} beds `
+                    : `${listing.bedrooms} bed `}
+                </li>
+              </div>
               <li className='flex items-center gap-1 whitespace-nowrap '>
                 <FaBath className='text-lg' />
                 {listing.bathrooms > 1
@@ -136,6 +176,10 @@ export default function Listing() {
                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
               </li>
             </ul>
+            <p className='text-slate-800'>
+              <span className='font-semibold text-black'>Description - </span>
+              {listing.description}
+            </p>
             {currentUser && listing.userRef !== currentUser._id && !contact && (
               <button
                 onClick={() => setContact(true)}

@@ -5,6 +5,7 @@ import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
+import SwiperCol from '../components/SwiperCol';
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
@@ -76,10 +77,12 @@ export default function Home() {
             <SwiperSlide>
               <div
                 style={{
+                  width: '100%',
                   background: `url(${listing.imageUrls[0]}) center no-repeat`,
                   backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                 }}
-                className='h-[500px]'
+                className='h-[550px]'
                 key={listing._id}
               ></div>
             </SwiperSlide>
