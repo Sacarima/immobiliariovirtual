@@ -26,7 +26,7 @@ import { useSelector } from 'react-redux'
   
   return (
     <header className='bg-slate-100'>
-        <div className='flex justify-between items-center max-w-6xl mx-auto p-6'>
+        <div className='flex justify-between items-center max-w-[70%] mx-auto p-6'>
             <Link to='/'>
                 <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
                     <span className='text-slate-500'>Immobiliario</span>

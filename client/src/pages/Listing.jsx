@@ -17,8 +17,10 @@ import {
   FaMapMarkerAlt,
   FaParking,
   FaShare,
+  FaArrowLeft
 } from 'react-icons/fa'
 import Contact from '../components/Contact';
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Listing() {
@@ -30,6 +32,8 @@ export default function Listing() {
   const [copied, setCopied] = useState(false)
   const [contact, setContact] = useState(false)
   const params = useParams()
+  const navigate = useNavigate()
+
   const { currentUser } = useSelector((state) => state.user)
 
   useEffect(() => {
@@ -54,8 +58,24 @@ export default function Listing() {
     fetchListing()
   }, [params.listingId])
 
+  const navigateBack = () => {
+    // Use navigate function to go back to search results
+    navigate('/search');
+  }
   return (
     <main>
+      <div className='flex gap-2 items-center my-4 w-[70%] m-auto'>
+        <FaArrowLeft 
+          className='text-lg text-slate-700 cursor-pointer' 
+          onClick={navigateBack}
+          />
+        <p
+          className='text-slate-700 text-lg cursor-pointer font-semibold' 
+          onClick={navigateBack}
+        >
+          Back to search results
+        </p>
+      </div>
         {/* replace the p selector with a loading spinner */}
       {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
       {error && (
@@ -70,7 +90,7 @@ export default function Listing() {
             //navigation={true}
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
-            className='w-[70%] mt-4 rounded-sm'
+            className='w-[70%] rounded-sm'
             >
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
@@ -128,7 +148,7 @@ export default function Listing() {
               Link copied!
             </p>
           )}
-          <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4'>
+          <div className='flex flex-col max-w-[70%] mx-auto p-3 my-7 gap-4'>
             <p className='text-2xl font-semibold'>
               {listing.name} - ${' '}
               {listing.offer
@@ -151,7 +171,7 @@ export default function Listing() {
               )}
             </div>
             
-            <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6  border-y-2 py-4'>
+            <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-6 sm:gap-6  border-y py-4'>
               <div>
                 <p className='text-gray-400 font-extralight uppercase mb-2'>Bedrooms</p>
                 <li className='flex items-center gap-1 whitespace-nowrap '>
@@ -161,20 +181,32 @@ export default function Listing() {
                     : `${listing.bedrooms} bed `}
                 </li>
               </div>
-              <li className='flex items-center gap-1 whitespace-nowrap '>
-                <FaBath className='text-lg' />
-                {listing.bathrooms > 1
-                  ? `${listing.bathrooms} baths `
-                  : `${listing.bathrooms} bath `}
-              </li>
-              <li className='flex items-center gap-1 whitespace-nowrap '>
-                <FaParking className='text-lg' />
-                {listing.parking ? 'Parking spot' : 'No Parking'}
-              </li>
-              <li className='flex items-center gap-1 whitespace-nowrap '>
-                <FaChair className='text-lg' />
-                {listing.furnished ? 'Furnished' : 'Unfurnished'}
-              </li>
+
+              <div>
+                <p className='text-gray-400 font-extralight uppercase mb-2'>Bathrooms</p>
+                <li className='flex items-center gap-1 whitespace-nowrap '>
+                  <FaBath className='text-lg' />
+                  {listing.bathrooms > 1
+                    ? `${listing.bathrooms} baths `
+                    : `${listing.bathrooms} bath `}
+                </li>
+              </div>
+
+              <div>
+                <p className='text-gray-400 font-extralight uppercase mb-2'>Parking</p>
+                <li className='flex items-center gap-1 whitespace-nowrap '>
+                  <FaParking className='text-lg' />
+                  {listing.parking ? 'Parking spot' : 'No Parking'}
+                </li>
+              </div>
+
+              <div>
+                <p className='text-gray-400 font-extralight uppercase mb-2'>Appliances</p>
+                <li className='flex items-center gap-1 whitespace-nowrap '>
+                  <FaChair className='text-lg' />
+                  {listing.furnished ? 'Furnished' : 'Unfurnished'}
+                </li>
+              </div>
             </ul>
             <p className='text-slate-800'>
               <span className='font-semibold text-black'>Description - </span>

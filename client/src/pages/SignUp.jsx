@@ -10,16 +10,38 @@ const SignUp = () => {
   const [formData, setFormData] = useState({})
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [confirmPassword, setConfirmPassword] = useState('')
   const navigate = useNavigate()
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     })
+
+    if (e.target.id === 'password') {
+      setConfirmPassword(e.target.value)
+    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    // Check if password and confirmPassword match
+    if (formData.password !== confirmPassword) {
+      setError('Passwords do not match')
+      return
+    } else {
+      setError(null) // Clear the error if passwords match
+    }
+
+    if (!formData.username || !formData.email || !formData.password || !confirmPassword) {
+      setError('Please fill in all fields')
+      return
+    } else {
+      setError(null) // Clear the error if all fields are filled
+    }
+    
     try {
       setLoading(true)
       const res = await fetch('/api/auth/signup', 
@@ -28,10 +50,14 @@ const SignUp = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          confirmPassword: confirmPassword,
+        }),
       })
       const data = await res.json()
       console.log(data)
+      
       if (data.success === false) {
         setLoading(false)
         setError(data.message)
@@ -89,6 +115,18 @@ const SignUp = () => {
                           id='password'
                       />
           
+                  </label>
+
+                  <label className="flex items-center gap-2 border-b">
+                      <FaLock className=" text-slate-600" />
+                      <input
+                          type="password"
+                          placeholder='Confirm Password'
+                          className=' p-3 rounded-lg outline-none  border-none focus:bg-none flex-auto'
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          id='confirmPassword'
+                      />
+                  
                   </label>
           
                 <button

@@ -180,13 +180,15 @@ import { useNavigate } from 'react-router-dom';
           <textarea
             type='text'
             placeholder='Description'
-            className='border p-3 rounded-lg'
+            className='border p-3 rounded-lg '
             id='description'
             required
             onChange={handleChange}
             value={formData.description}
             
           />
+          
+
           <input
             type='text'
             placeholder='Address'

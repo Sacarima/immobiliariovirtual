@@ -1,17 +1,22 @@
 import React from 'react'
+import CircleLoader from '../components/CircleLoader.jsx'
 
 const About = () =>{
   return (
-    <div>
-      <h3 className='text-slate-700'>About <span className='text-slate-500'>Immo-Virtual</span></h3>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-        Iure dicta cupiditate fugiat voluptatibus, consequuntur repellendus 
-        corrupti dolor voluptatem cum consectetur ullam repellat autem, 
-        nesciunt sequi dolore soluta veniam officiis atque!
-      </p>
+    <div 
+    style={{ 
+        maxWidth: '100%', 
+        width: '100%', 
+        aspectRatio: '10/6',
+        margin: 
+        '0 auto' 
+        }}
+        >
+      <CircleLoader />
     </div>
   )
 }
 
 export default About
+
+// this is to get the css styling
