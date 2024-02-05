@@ -63,7 +63,7 @@ export default function Listing() {
     navigate('/search');
   }
   return (
-    <main>
+    <main className='listing-main'>
       <div className='flex gap-2 items-center my-4 w-[70%] m-auto'>
         <FaArrowLeft 
           className='text-lg text-slate-700 cursor-pointer' 

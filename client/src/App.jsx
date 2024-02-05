@@ -10,6 +10,8 @@ import CreateListing from './pages/CreateListing'
 import UpdateListing from './pages/UpdateListing'
 import Listing from './pages/Listing'
 import Search from './pages/Search'
+import ForgotPassword from './components/ForgotPassword'
+import ResetPassword from './components/ResetPassword'
 
 
  const App = () => {
@@ -20,6 +22,8 @@ import Search from './pages/Search'
           <Route path="/" element={<Home />}/>
           <Route path="/sign-in" element={<SignIn />}/>
           <Route path="/sign-up" element={<SignUp />}/>
+          <Route path="/forgot-password" element={<ForgotPassword />}/>
+          <Route path="/reset-password:token" element={<ResetPassword />} />
           <Route path="/about" element={<About />}/>
           <Route element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />
