@@ -1,14 +1,20 @@
+
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import logo from '../assets/logo2.png'
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
 
     const handleResetPassword = async (e) => {
         e.preventDefault()
         setMessage('')
         setError('')
+        setLoading(true) // start loading
         try {
             const res = await fetch('/api/auth/forgot-password', {
                 method: 'POST',
@@ -18,8 +24,10 @@ export default function ForgotPassword() {
                 body: JSON.stringify({ email }),
             })
             const data = await res.json()
+            setLoading(false) // stop loading
             if(res.ok) {
                 setMessage('If there is an account associated with this email, you will receive a password reset link.')
+                navigate('/reset-password') // Redirect to the reset passwprd page
             }else {
                 throw new Error(data.message || 'Failed to send password reset email')
             }
@@ -32,9 +40,12 @@ export default function ForgotPassword() {
     
     <section className='bg-gray-50 dark:bg-gray-900'>
         <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
-            <a href="#" className='flex items-center mb-6 text-2xl font-semibold text-gray-400 dark:text-white' alt='logo'>
-                Immobiliario<span className='text-gray-700'>Virtual</span>
-            </a>
+            <Link to='/'>
+                <a href="#" className='flex items-center mb-6 text-2xl font-semibold text-gray-400 dark:text-white' alt='logo'>
+                    <img src={logo} alt="logo" />
+                    {/* Immobiliario<span className='text-gray-700'>Virtual</span> */}
+                </a>
+            </Link>
             <div className='w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray 700 sm:p-8'>
                 <h2 className='mg-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white'>Forgot your password ?</h2>
                 <p

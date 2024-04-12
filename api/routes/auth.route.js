@@ -8,6 +8,6 @@ router.post('/signin', signin)
 router.post('/google', google)
 router.get('/signout', signOut)
 router.post('/forgot-password', forgotPassword)
-router.post('/reset-password/:token').patch(resetPassword)
+router.patch('/reset-password/:token', resetPassword)
 
 export default router

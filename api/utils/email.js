@@ -15,15 +15,12 @@ const sendEmail = async (option) => {
         from: 'Cineflix support<support@cineflix.com', // sender address
         to: option.email, // list of receivers
         subject: option.subject, // Subject line
-        text: option.text, // plain text body
-        html: option.html, // html body
+        text: option.message // plain text body
+    
+        
     }
-try {
-    const info = await transporter.sendMail(emailOptions);
-    console.log(info);
-} catch (error) {
-    console.error("Error in sendEmail:", error);
-}
+    await transporter.sendMail(emailOptions)
+
    
 }
 

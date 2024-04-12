@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 import { app } from "../firebase"
 import { useSelector } from "react-redux"
@@ -177,10 +177,11 @@ import { useNavigate } from 'react-router-dom';
             value={formData.name}
             
           />
+         
           <textarea
             type='text'
             placeholder='Description'
-            className='border p-3 rounded-lg '
+            className='border p-3 rounded-lg whitespace-pre-wrap'
             id='description'
             required
             onChange={handleChange}
@@ -188,7 +189,9 @@ import { useNavigate } from 'react-router-dom';
             
           />
           
-
+          {/* <div style = {{  whiteSpace: 'pre-line'}} >
+            {formData.description}
+          </div> */}
           <input
             type='text'
             placeholder='Address'
@@ -322,7 +325,7 @@ import { useNavigate } from 'react-router-dom';
                   </div>
               )}
 
-              
+
           </div>
         </div>
         <div className='flex flex-col flex-1 gap-4'>

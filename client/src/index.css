@@ -146,5 +146,12 @@ body {
   object-fit: cover;
 }
 
+#swiper-wrapper {
+  
+  /* display: flex;
+  flex-direction: column;
+  overflow: hidden; */
+}
+
 
 

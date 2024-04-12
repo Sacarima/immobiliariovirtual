@@ -1,12 +1,8 @@
 import { useState } from 'react'
-import  { useNavigate, useSearchParams, useParams } from 'react-router-dom'
+import  { useNavigate, useParams } from 'react-router-dom'
 
 const ResetPassword = () => {
-    // const [searchParams] = useSearchParams()
-    // const token = searchParams.get('token')
     const { token } = useParams()
-    const [searchParams] = useSearchParams()
-    const id = searchParams.get('id')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const navigate = useNavigate()
@@ -23,13 +19,13 @@ const ResetPassword = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ id, newPassword: password }),
+                body: JSON.stringify({  password, confirmPassword }), // send the new password and confirm password
             })
 
             const data = await res.json()
             if (res.ok) {
                 alert('Password reset successfully')
-                navigate('/signin')
+                navigate('/signin') // Redirect to the sign in page
             } else {
                 throw new Error(data.message || 'Failed to reset password')
             }
