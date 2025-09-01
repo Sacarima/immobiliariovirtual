@@ -2,7 +2,7 @@
 
 Modern, responsive real-estate web app for the Polish market. Search, filter, and explore listings; subscribe to market insights; contact trusted pros; and sign in with Google OAuth.
 
-![Immobilia-Virtual Preview](client/realestate.jpg)
+![Immobilia-Virtual Preview](client/src/assets/realestate.jpg)
 
 <p align="left">
   <a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">HTML5</a> ·
