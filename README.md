@@ -2,7 +2,7 @@
 
 Modern, responsive real-estate web app for the Polish market. Search, filter, and explore listings; subscribe to market insights; contact trusted pros; and sign in with Google OAuth.
 
-![Immobilia-Virtual Preview](realestate.jpg)
+![Immobilia-Virtual Preview](client/realestate.jpg)
 
 <p align="left">
   <a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">HTML5</a> ·
@@ -67,38 +67,40 @@ Modern, responsive real-estate web app for the Polish market. Search, filter, an
 
 ## Project Structure
 
+```text
 immobilia-virtual/
 ├─ api/
-│ ├─ index.js # Express app entry (ESM)
-│ ├─ routes/
-│ │ ├─ contact.routes.js # POST /api/contact
-│ │ └─ newsletter.routes.js # (optional) POST /api/newsletter
-│ ├─ controllers/
-│ │ ├─ contact.controller.js # createContact()
-│ │ └─ newsletter.controller.js # (optional)
-│ └─ models/
-│ ├─ ContactMessage.js
-│ └─ NewsletterSubscriber.js # (optional)
+│  ├─ index.js                     # Express app entry (ESM)
+│  ├─ routes/
+│  │  ├─ contact.routes.js         # POST /api/contact
+│  │  └─ newsletter.routes.js      # (optional) POST /api/newsletter
+│  ├─ controllers/
+│  │  ├─ contact.controller.js     # createContact()
+│  │  └─ newsletter.controller.js  # (optional)
+│  └─ models/
+│     ├─ ContactMessage.js
+│     └─ NewsletterSubscriber.js   # (optional)
 ├─ src/
-│ ├─ components/
-│ │ ├─ Header.jsx
-│ │ ├─ ListingItem.jsx
-│ │ ├─ NewsletterSignup.jsx # reusable signup form (Home/About/modal)
-│ │ └─ ...
-│ ├─ hooks/
-│ │ └─ useMediaQuery.js
-│ ├─ pages/
-│ │ ├─ Home.jsx
-│ │ ├─ Search.jsx
-│ │ ├─ AboutImmobiliaVirtual.jsx
-│ │ └─ ServicesImmobiliaVirtual.jsx
-│ └─ assets/
-│ └─ logo22.png
-├─ realestate.jpg # README preview image
+│  ├─ components/
+│  │  ├─ Header.jsx
+│  │  ├─ ListingItem.jsx
+│  │  ├─ NewsletterSignup.jsx      # reusable signup form (Home/About/modal)
+│  │  └─ ...
+│  ├─ hooks/
+│  │  └─ useMediaQuery.js
+│  ├─ pages/
+│  │  ├─ Home.jsx
+│  │  ├─ Search.jsx
+│  │  ├─ AboutImmobiliaVirtual.jsx
+│  │  └─ ServicesImmobiliaVirtual.jsx
+│  └─ assets/
+│     └─ logo22.png
+├─ realestate.jpg                  # README preview image
 ├─ tailwind.config.js
 ├─ postcss.config.js
 ├─ package.json
 └─ README.md
+
 
 
 ---
