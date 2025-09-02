@@ -2,17 +2,9 @@ import React from "react";
 import realEstate from '../assets/realstat.jpeg'
 import Footer from '../components/Footer'
 
-/**
- * AboutImmobiliaVirtual – Modern About page
- * ----------------------------------------
- * - Plain React + TailwindCSS (no TS, no extra deps)
- * - Responsive, accessible, and easy to brand
- * - Uses CSS variables for brand colors (#00b39b and #C85F31 by default)
- * - Replace placeholders (images/links/text) as needed
- */
 
-const BRAND = "#041337";    // primary
-const BRAND2 = "#C85F31";   // secondary
+const BRAND = "#041337";   
+const BRAND2 = "#C85F31";   
 
 const PLACEHOLDER =
   "data:image/svg+xml;utf8," +

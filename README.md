@@ -44,14 +44,14 @@ Modern, responsive real-estate web app for the Polish market. Search, filter, an
 
 ## Features
 
-- 🔐 **Google OAuth login** (Firebase Authentication); user avatar displayed in header.
-- 🔎 **Advanced search** with URL-synced filters (type, amenities, price range, sort) and “Show more” pagination.
-- 📰 **Newsletter subscription** component (reusable on Home/About) with validation, consent, honeypot, and async status.
-- ☎️ **Contact form** posts to `/api/contact` with server-side validation and optional email notifications.
-- 🧭 **Modern navigation** with active states (`NavLink`) and a responsive mobile drawer.
-- 📄 **Marketing pages**: About & Services (responsive, accessible, brand-consistent).
-- 🎨 **Tailwind + Flowbite UI** with gradient accents and a sticky filter sidebar on desktop.
-- 🎨 **Redux** For state management.
+-  **Google OAuth login** (Firebase Authentication); user avatar displayed in header.
+-  **Advanced search** with URL-synced filters (type, amenities, price range, sort) and “Show more” pagination.
+-  **Newsletter subscription** component (reusable on Home/About) with validation, consent, honeypot, and async status.
+-  **Contact form** posts to `/api/contact` with server-side validation and optional email notifications.
+-  **Modern navigation** with active states (`NavLink`) and a responsive mobile drawer.
+-  **Marketing pages**: About & Services (responsive, accessible, brand-consistent).
+-  **Tailwind + Flowbite UI** with gradient accents and a sticky filter sidebar on desktop.
+-  **Redux toolkits** For state management.
 
 ---
 
@@ -147,7 +147,11 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=1234567890
 ```
 ## Getting Started
 
-Install & run 
+## Install & Run
+
+Install dependencies:
+
+```bash
 npm i
 
 npm i -D nodemon concurrently

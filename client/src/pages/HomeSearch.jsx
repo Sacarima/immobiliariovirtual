@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import ListingItem from '../components/ListingItem';
 import useMediaQuery from '../hooks/useMediaQuery';
 
+
+
+const BRAND = "#041337";    
+const BRAND2 = "#C85F31";
+
 const HomeSearch = () => {
   const navigate = useNavigate();
   const [sidebardata, setSidebardata] = useState({
@@ -142,7 +147,7 @@ const HomeSearch = () => {
   };
 
   return (
-    <div className='flex flex-row md:flex-row md:flex-wrap'>
+    <div className='flex flex-row md:flex-row md:flex-wrap' style={{ "--brand": BRAND, "--brand2": BRAND2 }}>
       <div className='bg-white'>
         {<form onSubmit={handleSubmit} className='flex flex-col p-4 gap-8 md:flex-row  lg:flex-wrap'>
           <div className='flex flex-col items-center md:flex-row md:flex-wrap  gap-2'>
@@ -258,7 +263,10 @@ const HomeSearch = () => {
               onChange={handleChange}
             />
           </div>
-          <button className='bg-[#C85F31] text-white p-3 rounded-lg uppercase hover:opacity-95 px-12'>
+          <button 
+             className="inline-flex items-center gap-2 rounded-xl px-8 py-2.5 text-white shadow-sm transition active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+              style={{ backgroundImage: "linear-gradient(90deg, var(--brand), var(--brand2))" }}
+          >
             Search
           </button>
         </form>}

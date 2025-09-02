@@ -46,8 +46,8 @@ const SignIn = () => {
   }
   
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <div className='border rounded-lg py-6 px-8 pb-20 mt-20 shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]'>
+    <div className='p-3 max-w-lg mx-auto grid place-items-center min-h-screen'>
+      <div className='border-[.5px] rounded-lg py-6 px-8  w-full  shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]'>
         <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
         
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>

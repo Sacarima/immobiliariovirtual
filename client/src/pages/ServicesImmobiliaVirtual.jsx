@@ -1,16 +1,8 @@
 import React from "react";
 import Footer from '../components/Footer'
 
-/**
- * ServicesImmobiliaVirtual – Modern Services page
- * ------------------------------------------------
- * - Plain React + TailwindCSS (no extra deps)
- * - Fully responsive, accessible, semantic structure
- * - Brandable with CSS vars (#00b39b and #C85F31 by default)
- */
-
-const BRAND = "#041337"; // primary
-const BRAND2 = "#C85F31"; // secondary
+const BRAND = "#041337"; 
+const BRAND2 = "#C85F31";
 
 export default function ServicesImmobiliaVirtual() {
   return (
