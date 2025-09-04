@@ -1,23 +1,5 @@
 import React, { useMemo, useRef, useState } from "react";
 
-/**
- * NewsletterSubscribe – modern, accessible subscription card
- * ---------------------------------------------------------
- * - Plain React (no TS), TailwindCSS classes
- * - Keyboard accessible, proper labels, aria-live updates
- * - Lightweight validation + honeypot field to deter bots
- * - Subtle micro‑animations (focus ring, button press, success check)
- * - Brandable via props (default uses #00b39b and #C85F31)
- *
- * Props
- * -----
- * title?: string
- * description?: string
- * successMessage?: string
- * onSubscribe?: (payload: { email: string; name?: string; consent: boolean }) => Promise<void>
- * brand?: string  // primary accent (e.g., #00b39b)
- * brand2?: string // secondary accent (e.g., #C85F31)
- */
 
 export default function NewsletterSubscribe({
   title = "Get market insights in your inbox",

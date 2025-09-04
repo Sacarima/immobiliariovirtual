@@ -21,7 +21,7 @@ export default function ServicesImmobiliaVirtual() {
       />
 
       {/* HERO */}
-      <section className="relative mx-auto max-w-6xl px-4 sm:px-6 pt-16 sm:pt-24 pb-12">
+      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 pt-16 sm:pt-24 pb-12">
         <div className="grid items-center gap-10 md:grid-cols-2">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200 backdrop-blur">
@@ -61,7 +61,7 @@ export default function ServicesImmobiliaVirtual() {
       </section>
 
       {/* CORE SERVICES */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
         <SectionHeader
           title="Core services"
           subtitle="Built around real needs—search smarter, decide faster, and move with clarity."
@@ -78,7 +78,7 @@ export default function ServicesImmobiliaVirtual() {
       </section>
 
       {/* SOLUTIONS BY AUDIENCE */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
         <SectionHeader title="Solutions for everyone" subtitle="Tailored paths whether you're buying, renting, selling, or building." />
         <div className="grid gap-6 md:grid-cols-3">
           <AudienceCard
@@ -100,7 +100,7 @@ export default function ServicesImmobiliaVirtual() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
         <SectionHeader title="How it works" subtitle="A simple flow from discovery to decision." />
         <ol className="relative border-l border-gray-200">
           {[
@@ -119,7 +119,7 @@ export default function ServicesImmobiliaVirtual() {
       </section>
 
       {/* INSIGHTS CALLOUT */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-6">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-6">
         <div className="rounded-3xl border border-gray-200 bg-white p-6 sm:p-10 shadow-sm flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h3 className="text-xl sm:text-2xl font-semibold tracking-tight">Make data your advantage</h3>
@@ -136,7 +136,7 @@ export default function ServicesImmobiliaVirtual() {
       </section>
 
       {/* FAQ SNIPPET */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
         <SectionHeader title="Common questions" subtitle="Quick answers about services and features." />
         <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 bg-white">
           {[
@@ -158,7 +158,7 @@ export default function ServicesImmobiliaVirtual() {
       </section>
 
       {/* CONTACT / CTA */}
-      <section id="contact" className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+      <section id="contact" className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
         <div className="grid gap-8 rounded-3xl border border-gray-200 bg-white p-6 sm:p-10 shadow-sm md:grid-cols-2">
           <div>
             <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight">Let’s get you moving</h3>

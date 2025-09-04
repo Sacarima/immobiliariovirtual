@@ -69,7 +69,7 @@ export default function Contact() {
       />
 
       {/* Header */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-20 lg:pt-28 pb-8">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 pt-20 lg:pt-28 pb-8">
         <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200 backdrop-blur">
           <Dot /> Contact Us
         </span>
@@ -80,7 +80,7 @@ export default function Contact() {
       </section>
 
       {/* Content */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-20 lg:pb-28">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-20 lg:pb-28">
         <div className="grid gap-10 lg:grid-cols-5">
           {/* Left: Info */}
           <aside className="lg:col-span-2 space-y-5">

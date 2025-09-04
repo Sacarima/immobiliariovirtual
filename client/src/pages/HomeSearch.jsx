@@ -439,10 +439,10 @@ const HomeSearch = () => {
       <div className="mx-auto max--7xl px-4 sm:px-6 md:px-8">
         {/* Header */}
         <div className="mb-6 md:mb-8">
-          <h2 className="text-white text-center lg:text-start font-bold text-5xl mt-20 lg:text-5xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+          <h2 className="text-white text-center lg:text-start font-bold text-4xl mt-20 lg:text-5xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
             Find your next place
           </h2>
-          <p className="mt-2 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Search by term, type, amenities, price and sort preferences.</p>
+          <p className="mt-2 text-center lg:text-start text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Search by term, type, amenities, price and sort preferences.</p>
         </div>
 
         {/* Card */}

@@ -37,14 +37,14 @@ export default function AboutImmobiliaVirtual() {
       />
 
       {/* HERO */}
-      <section className="relative mx-auto max-w-6xl px-4 sm:px-6 pt-16 sm:pt-24 pb-12">
+      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 pt-16 sm:pt-24 pb-12">
         <div className="grid items-center gap-10 md:grid-cols-2">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200 backdrop-blur">
               <Dot /> Since 2023 — Trusted real‑estate insights
             </span>
             <h1 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight tracking-tight">
-              About <span className="bg-gradient-to-r from-[color:var(--brand)] to-[color:var(--brand2)] bg-clip-text text-transparent">immobilia‑virtual</span>
+              About <span className="bg-gradient-to-r from-[color:var(--brand)] to-[color:var(--brand2)] bg-clip-text text-transparent">immobiliario‑virtual</span>
             </h1>
             <p className="mt-4 text-gray-600 text-base/7 md:text-lg/8">
               We make the Polish property market transparent and accessible. From the largest listing base to data‑driven reports and expert guidance, we help people buy, sell, and rent with confidence.
@@ -83,7 +83,7 @@ export default function AboutImmobiliaVirtual() {
       </section>
 
       {/* MISSION & VALUES */}
-      <section id="mission" className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+      <section id="mission" className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
         <div className="grid gap-8 md:grid-cols-2">
           <Card>
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">Our mission</h2>
@@ -110,7 +110,7 @@ export default function AboutImmobiliaVirtual() {
       </section>
 
       {/* WHAT WE DO */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
         <header className="mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">What we do</h2>
           <p className="mt-2 text-gray-600 max-w-2xl">From discovery to decision, immobilia‑virtual provides the tools and knowledge that make real‑estate journeys easier.</p>
@@ -124,7 +124,7 @@ export default function AboutImmobiliaVirtual() {
       </section>
 
       {/* TIMELINE */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
         <header className="mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">Our journey</h2>
         </header>
@@ -144,7 +144,7 @@ export default function AboutImmobiliaVirtual() {
       </section>
 
       {/* TEAM */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
         <header className="mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">Team</h2>
           <p className="mt-2 text-gray-600 max-w-2xl">A small, focused team of engineers, researchers, and designers building with purpose.</p>
@@ -172,7 +172,7 @@ export default function AboutImmobiliaVirtual() {
       </section>
 
       {/* CTA + CONTACT */}
-      <section id="contact" className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+      <section id="contact" className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
         <div className="grid gap-8 rounded-3xl border border-gray-200 bg-white p-6 sm:p-10 shadow-sm md:grid-cols-2">
           <div>
             <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight">

@@ -45,7 +45,7 @@ const Header = () => {
 
   return (
     <header className="bg-[white] border-b-[0.5px] w-full fixed top-0 z-[40] " style={{ "--brand": BRAND, "--brand2": BRAND2 }}>
-      <div className="flex justify-between items-center lg:max-w-6xl mx-auto lg:py-2 px-2">
+      <div className="flex justify-between items-center lg:max-w-7xl mx-auto lg:py-2 px-2">
         <Link to="/">
           <div className="py-4 lg:py-2 ">
             <span className="font-bold text-[#C85F31] text-xl">Immobiliario</span>
