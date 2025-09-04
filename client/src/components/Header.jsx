@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom'
+import { FiHome, FiInfo, FiPhone, FiBriefcase } from "react-icons/fi"
 import { useSelector } from 'react-redux'
 import useMediaQuery from '../hooks/useMediaQuery'
 import logo from '../assets/logo22.png'
 import menu from '../assets/menu-icon.svg'
+import { CiMenuFries } from "react-icons/ci"
 import closeIcon from '../assets/close-icon.svg'
 
 const BRAND = "#041337";   
@@ -47,7 +49,7 @@ const Header = () => {
         <Link to="/">
           <div className="py-4 lg:py-2 ">
             <span className="font-bold text-[#C85F31] text-xl">Immobiliario</span>
-            <span className="text-md shadow-lg border-[1px] border-black rounded-full px-2">Virtual</span>
+            <span className="text-md uppercase font-extralight">Virtual</span>
           </div>
         </Link>
 
@@ -114,15 +116,15 @@ const Header = () => {
           </ul>
         ) : (
           <button
-            className="rounded-full bg-[#C85F31] p-2"
+            className="rounded-full  p-2"
             onClick={() => setIsMenuToggled(!isMenuToggled)}
           >
-            <img src={menu} alt="Menu" />
+            <CiMenuFries className='text-3xl'/>
           </button>
         )}
 
         {/* Mobile menu */}
-        {!isAboveSmallScreens && isMenuToggled && (
+        {/* {!isAboveSmallScreens && isMenuToggled && (
           <div className="fixed right-0 bottom-0 h-full bg-[#C85F31] w-full">
             <div className="flex justify-end px-2 pt-1">
               <button
@@ -196,7 +198,126 @@ const Header = () => {
               </li>
             </ul>
           </div>
+        )} */}
+
+        {/* Mobile menu */}
+        {!isAboveSmallScreens && isMenuToggled && (
+          <div className="fixed inset-0 z-50">
+            {/* Soft backdrop for depth (visual only) */}
+            <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+
+            {/* Panel */}
+            <nav
+              className="
+                relative h-full w-full text-white
+                bg-gradient-to-br from-[#041337] to-[#C85F31]
+                pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]
+                shadow-2xl
+              "
+              aria-label="Mobile Navigation"
+            >
+              {/* Top bar */}
+              <div className="flex items-center justify-end px-3 py-2">
+                <button
+                  className="rounded-full p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black/20 hover:scale-[1.03] transition"
+                  onClick={() => setIsMenuToggled(false)}
+                  aria-label="Close menu"
+                >
+                  <img src={closeIcon} alt="Close menu" className="h-6 w-6" />
+                </button>
+              </div>
+
+              {/* Links */}
+              <ul className="relative z-10 flex flex-col items-stretch gap-3 h-[calc(100vh-72px)] px-5 pb-6">
+                <li className="group">
+                  <NavLink
+                    to="/"
+                    end
+                    onClick={() => setIsMenuToggled(false)}
+                    className={({ isActive }) =>
+                      `${baseMobile} ${isActive ? activeMobile : ""} flex items-center gap-3 rounded-xl px-4 py-3 bg-white/0 hover:bg-white/10 transition`
+                    }
+                  >
+                    {/* Icon tints on active/hover but does not change logic */}
+                    <FiHome className="text-white/80 group-hover:text-white" />
+                    <span className="truncate">Home</span>
+                  </NavLink>
+                </li>
+
+                <li className="group">
+                  <NavLink
+                    to="/about"
+                    onClick={() => setIsMenuToggled(false)}
+                    className={({ isActive }) =>
+                      `${baseMobile} ${isActive ? activeMobile : ""} flex items-center gap-3 rounded-xl px-4 py-3 bg-white/0 hover:bg-white/10 transition`
+                    }
+                  >
+                    <FiInfo className="text-white/80 group-hover:text-white" />
+                    <span className="truncate">About</span>
+                  </NavLink>
+                </li>
+
+                <li className="group">
+                  <NavLink
+                    to="/contact"
+                    onClick={() => setIsMenuToggled(false)}
+                    className={({ isActive }) =>
+                      `${baseMobile} ${isActive ? activeMobile : ""} flex items-center gap-3 rounded-xl px-4 py-3 bg-white/0 hover:bg-white/10 transition`
+                    }
+                  >
+                    <FiPhone className="text-white/80 group-hover:text-white" />
+                    <span className="truncate">Contact</span>
+                  </NavLink>
+                </li>
+
+                <li className="group">
+                  <NavLink
+                    to="/service"
+                    onClick={() => setIsMenuToggled(false)}
+                    className={({ isActive }) =>
+                      `${baseMobile} ${isActive ? activeMobile : ""} flex items-center gap-3 rounded-xl px-4 py-3 bg-white/0 hover:bg-white/10 transition`
+                    }
+                  >
+                    <FiBriefcase className="text-white/80 group-hover:text-white" />
+                    <span className="truncate">Services</span>
+                  </NavLink>
+                </li>
+
+                {/* Divider */}
+                <li className="my-2 border-t border-white/20" />
+
+                {/* Profile / Login */}
+                <li className="border-b border-white/20 pb-3">
+                  <Link to="/profile" onClick={() => setIsMenuToggled(false)} className="block">
+                    {currentUser ? (
+                      <div className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition">
+                        <img
+                          className="h-14 w-14 rounded-full object-cover ring-2 ring-white/70"
+                          src={currentUser.avatar}
+                          alt="profile"
+                        />
+                        <div className="min-w-0">
+                          <p className="text-sm opacity-90">Signed in</p>
+                          <p className="truncate font-medium">Profile</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 transition">
+                        <span className="text-white font-medium">Login</span>
+                      </div>
+                    )}
+                  </Link>
+                </li>
+
+                {/* Bottom gradient accent bar (purely decorative) */}
+                <li className="mt-auto">
+                  <div className="h-1.5 w-24 rounded-full bg-white/40" />
+                </li>
+              </ul>
+            </nav>
+          </div>
         )}
+
       </div>
     </header>
   )

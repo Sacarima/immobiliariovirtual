@@ -91,7 +91,7 @@ export default function NewsletterSubscribe({
 
   return (
     <section
-      className="relative mx-auto w-full lg:max-w-[60%] px-4 sm:px-6 py-20"
+      className="relative mx-auto w-full px-4 sm:px-6 py-20"
       style={{
         ["--brand"]: brand,
         ["--brand2"]: brand2,
@@ -107,7 +107,7 @@ export default function NewsletterSubscribe({
         }}
       />
 
-      <div className="overflow-hidden rounded-2xl borde-[.5px] border-gray-200 bg-white shadow-sm">
+      <div className="overflow-hidden rounded-2xl border-[.5px] border-gray-200 bg-white shadow-sm">
         <div className="grid gap-6 p-6 sm:p-8 md:grid-cols-5">
           {/* Copy */}
           <div className="md:col-span-2">

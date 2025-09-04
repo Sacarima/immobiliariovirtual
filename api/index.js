@@ -9,8 +9,6 @@ import newsletterRoutes from './routes/newsletter.routes.js'
 import contactRoutes from './routes/contact.routes.js'
 import cors from 'cors'
 import path from 'path'
-import fs from 'fs'
-
 dotenv.config()
 
 mongoose.connect(process.env.DB_STRING)
@@ -22,23 +20,23 @@ mongoose.connect(process.env.DB_STRING)
     process.exit(1);
   });
 
-const __dirname = path.resolve();
+  const __dirname = path.resolve();
 
 const app = express()
 app.use(cors())
 
 app.use(cors({
-    origin: [
-      'http://localhost:5173/',
-    'https://immobiliario-virtual.onrender.com'
-    ],
+    origin: 'http://localhost:5173/',
     credentials: true,
 }))
 
 app.use(express.json())
+
 app.use(cookieParser())
 
-
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`)
+})
 
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
@@ -46,21 +44,10 @@ app.use('/api/listing', listingRouter)
 app.use('/api/newsletter', newsletterRoutes);
 app.use('/api/contact', contactRoutes)
 
-// --- Static client ---
-const clientDistPath = path.join(__dirname, 'client', 'dist')
-// If your index.js lives in /api, use ../client/dist:
-const fallbackDistPath = fs.existsSync(clientDistPath)
-  ? clientDistPath
-  : path.join(__dirname, '../client/dist')
-
-// 1) Serve /assets and all built files BEFORE the catch-all
-app.use('/assets', express.static(path.join(fallbackDistPath, 'assets')))
-app.use(express.static(fallbackDistPath))
-
-// 2) SPA fallback (serve index.html for non-API routes)
-app.get(/^\/(?!api).*/, (_req, res) => {
-  res.sendFile(path.join(fallbackDistPath, 'index.html'))
-})
+app.use(express.static(path.join(__dirname, '../client/dist')))
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
 
 // middleware for handding errors
 
@@ -72,12 +59,4 @@ app.use((err, req, res, next) => {
         statusCode,
         message,
     })
-})
-
-
-// --- Listen LAST ---
-const PORT = Number(process.env.PORT) || 10000
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-  console.log('Serving client from:', fallbackDistPath)
 })

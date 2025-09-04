@@ -159,7 +159,7 @@ export default function ImmobiliaVirtualFAQ({
 
   return (
     <section
-      className="relative mx-auto lg:max-w-[60%] px-4 sm:px-6 py-10 sm:py-16"
+      className="relative mx-auto px-4 sm:px-6 py-10 sm:py-16"
       style={{
         // decorative gradient halo
         // (kept subtle; remove if undesired)
