@@ -1,9 +1,6 @@
 
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Navigation } from 'swiper/modules';
-import SwiperCore from 'swiper';
-import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
 import HomeSearch from './HomeSearch';
 import bgImg from '../assets/bgimg666.jpg';
@@ -20,7 +17,7 @@ export default function Home() {
   const [rentListings, setRentListings] = useState([]);
   
 
-  SwiperCore.use([Navigation]);
+  
 
   useEffect(() => {
     const fetchOfferListings = async () => {
