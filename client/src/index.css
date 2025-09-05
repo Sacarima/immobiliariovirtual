@@ -71,11 +71,6 @@ form label:focus {
 }
 
 
-html,
-body {
-  position: relative;
-  height: 100%;
-}
 
 
 .swiperr {
@@ -101,10 +96,6 @@ body {
   object-fit: cover;
 }
 
-body {
-  background:
-  color
-}
 
 .swiperr {
   width: 100%;
@@ -170,4 +161,17 @@ body {
 }
 .btn-danger {
   @apply px-4 py-2 rounded-lg border border-red-600 text-red-600 font-medium hover:bg-red-50 transition;
+}
+
+/* Keep Swiper constrained on small screens */
+.listing-swiper, .listing-thumbs { max-width: 100%; overflow: hidden; }
+.listing-swiper .swiper, .listing-thumbs .swiper { max-width: 100%; }
+
+
+/* On small screens, make arrows smaller and closer so they never poke out */
+@media (max-width: 640px) {
+  .listing-swiper {
+    --swiper-navigation-size: 24px;
+    --swiper-navigation-sides-offset: 6px;
+  }
 }

@@ -160,7 +160,7 @@ export default function Search() {
     }}
   />
         {/* Sidebar / Filters */}
-      <aside className="lg:col-[1] md:sticky md:top-24 self-start">
+      <aside className="lg:col-[1] w-full lg:w-auto px-4 lg:px-0 mt-20 lg:mt-0  md:sticky md:top-24 self-start">
          <header className="mb-6 px-4">
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">
             <span className="bg-gradient-to-r from-[color:var(--brand)] to-[color:var(--brand2)] bg-clip-text text-transparent">

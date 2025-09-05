@@ -7,7 +7,7 @@ const BRAND2 = "#C85F31";
 export default function ServicesImmobiliaVirtual() {
   return (
     <main
-      className="relative min-h-screen bg-white text-gray-900"
+      className="relative min-h-screen bg-white text-gray-900 mt-4 lg:mt-0"
       style={{ "--brand": BRAND, "--brand2": BRAND2 }}
     >
       {/* Decorative background aura */}

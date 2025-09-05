@@ -23,7 +23,7 @@ const PLACEHOLDER =
 export default function AboutImmobiliaVirtual() {
   return (
     <main
-      className="relative min-h-screen bg-white text-gray-900"
+      className="relative min-h-screen bg-white text-gray-900 mt-4 lg:mt-0"
       style={{ "--brand": BRAND, "--brand2": BRAND2 }}
     >
       {/* Decorative page aura */}

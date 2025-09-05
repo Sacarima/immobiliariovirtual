@@ -1,18 +1,11 @@
 
 import { useEffect, useMemo, useState, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import useEmblaCarousel from 'embla-carousel-react'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import Footer from '../components/Footer'
 
-// Swiper
-import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore from 'swiper'
-import { Navigation, Pagination, FreeMode, Thumbs, Grid, Keyboard, A11y } from 'swiper/modules'
-import 'swiper/css/bundle'
-import 'swiper/css'
-import 'swiper/css/free-mode'
-import 'swiper/css/navigation'
-import 'swiper/css/thumbs'
 
 // Icons
 import {
@@ -29,13 +22,8 @@ import {
 import Contact from '../components/Contact'
 
 export default function Listing() {
-  // (Keep SwiperCore.use to avoid breaking older Swiper setups)
-  SwiperCore.use([Navigation])
 
-  const [thumbsSwiper, setThumbsSwiper] = useState(null)
-  const handleThumbs = useCallback((sw) => {
-    setThumbsSwiper((prev) => prev || sw)
-  }, [])
+
   const [listing, setListing] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -224,64 +212,131 @@ export default function Listing() {
     </div>
   )
 
-  const Gallery = () => (
-    <div>
-      <Swiper
-        navigation
-                spaceBetween={12}
-        loop={((listing?.imageUrls?.length ?? 0) > 1)}
-        keyboard={{ enabled: true }}
-        thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
-        modules={[FreeMode, Navigation, Thumbs, Keyboard, A11y]}
-        className="rounded-2xl overflow-hidden"
-      >
-        {listing.imageUrls.map((url) => (
-          <SwiperSlide key={url}>
-            <div
-              className="h-[420px] md:h-[520px] bg-slate-100"
-              style={{ background: `url(${url}) center / cover no-repeat` }}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+  const Gallery = () => {
+  const images = listing?.imageUrls || []
 
-      <Swiper
-        onSwiper={handleThumbs}
-        loop={false}
-        spaceBetween={12}
-        slidesPerView={4}
-        freeMode
-        watchSlidesProgress
-        grid={{ rows: 1 }}
-        modules={[FreeMode, Navigation, Thumbs, Grid, Pagination]}
-        className="mt-3"
-        breakpoints={{
-          320: { slidesPerView: 4 },
-          640: { slidesPerView: 5 },
-          1024: { slidesPerView: 6 },
-        }}
-      >
-        {listing.imageUrls.map((url) => (
-          <SwiperSlide key={url}>
-            <div
-              className="h-20 md:h-24 rounded-lg border border-slate-200 shadow-sm overflow-hidden hover:ring-2 ring-slate-300 cursor-pointer"
-              style={{ background: `url(${url}) center / cover no-repeat` }}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+  // Main carousel
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: images.length > 1,
+    align: 'start',
+  })
+
+  // Thumbs carousel
+  const [thumbRef, thumbApi] = useEmblaCarousel({
+    dragFree: true,
+    containScroll: 'trimSnaps',
+    align: 'start',
+  })
+
+  const [selectedIndex, setSelectedIndex] = useState(0)
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    const i = emblaApi.selectedScrollSnap()
+    setSelectedIndex(i)
+    // keep the selected thumb in view
+    if (thumbApi) thumbApi.scrollTo(i)
+  }, [emblaApi, thumbApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    emblaApi.on('select', onSelect)
+    emblaApi.on('reInit', onSelect)
+    onSelect()
+  }, [emblaApi, onSelect])
+
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
+    const onThumbClick = useCallback(
+    (index) => () => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  )
+
+  if (!images.length) {
+    return (
+      <div className="w-full h-[56vw] sm:h-[420px] md:h-[520px] rounded-2xl bg-slate-100" />
+    )
+  }
+
+  return (
+    <div className="relative">
+      {/* MAIN */}
+      <div className="overflow-hidden rounded-2xl" ref={emblaRef}>
+        <div className="flex touch-pan-y">
+          {images.map((url, i) => (
+            <div key={url} className="flex-none basis-full min-w-0">
+              <div className="w-full h-[62vw] sm:h-[420px] md:h-[520px] bg-slate-100">
+                <img
+                  src={url}
+                  alt={`Photo ${i + 1} of ${listing?.name || 'listing'}`}
+                  className="w-full h-full object-cover select-none pointer-events-none"
+                  draggable={false}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Arrows (kept inside so they never cause horizontal overflow) */}
+      {images.length > 1 && (
+        <>
+          <button
+            aria-label="Previous photo"
+            onClick={scrollPrev}
+            className="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 items-center justify-center rounded-full bg-white/90 border border-slate-200 shadow hover:bg-white"
+          >
+            <FaChevronLeft className="text-slate-700" />
+          </button>
+          <button
+            aria-label="Next photo"
+            onClick={scrollNext}
+            className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 items-center justify-center rounded-full bg-white/90 border border-slate-200 shadow hover:bg-white"
+          >
+            <FaChevronRight className="text-slate-700" />
+          </button>
+        </>
+      )}
+
+      {/* THUMBS */}
+      <div className="mt-3 overflow-hidden" ref={thumbRef}>
+        <div className="flex gap-2">
+          {images.map((url, i) => (
+            <button
+              key={url}
+              onClick={onThumbClick(i)}
+              aria-label={`Go to photo ${i + 1}`}
+              className={[
+                'flex-none basis-1/4 sm:basis-1/5 lg:basis-1/6',
+                'h-16 sm:h-20 md:h-24 rounded-lg overflow-hidden border',
+                i === selectedIndex ? 'border-slate-300 ring-2 ring-slate-400' : 'border-slate-200',
+              ].join(' ')}
+            >
+              <img
+                src={url}
+                alt={`Thumbnail ${i + 1}`}
+                className="w-full h-full object-cover"
+                draggable={false}
+              />
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   )
+}
+
+
 
   // ===== Render =====
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       {loading && <Skeleton />}
       {error && !loading && <ErrorView />}
 
 
       {listing && !loading && !error && (
-        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-8 lg:my-10">
+        <div className="max-w-7xl mx-auto px-4 lg:px-6 py-8 lg:my-10 relative overflow-x-hidden touch-pan-y mt-10">
           {/* Title */}
           <div className="mb-4">
             <h1 className="text-2xl md:text-3xl font-semibold text-slate-900">{listing.name}</h1>
